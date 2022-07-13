@@ -221,9 +221,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  // bgImg: {
-  //   flex: 1,
-  // },
   title: {
     fontSize: 40,
     fontWeight: "bold",

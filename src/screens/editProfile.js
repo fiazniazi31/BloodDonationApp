@@ -8,11 +8,26 @@ import {
   // Switch,
   ScrollView,
 } from "react-native";
-import { TextInput, Button } from "react-native-paper";
+import {
+  TextInput,
+  Avatar,
+  Button,
+  Card,
+  Title,
+  Paragraph,
+} from "react-native-paper";
 import { firebase } from "../services/db/firebase_config";
 
+const LeftContent = (props) => (
+  <Avatar.Icon
+    style={{ backgroundColor: "#DE3D3D" }}
+    {...props}
+    icon="information"
+  />
+);
+
 function EditProfile({ navigation }) {
-  const [isAvail, setIsAvail] = useState("");
+  const [isavail, setIsAvail] = useState("");
   const [person, setPerson] = useState("");
   useEffect(() => {
     const userId = firebase.auth().currentUser.uid;
@@ -31,52 +46,57 @@ function EditProfile({ navigation }) {
         // setLoading(false);
       });
   }, []);
-
+  function update() {
+    const userId = firebase.auth().currentUser.uid;
+    firebase
+      .firestore()
+      .collection("donors")
+      .doc(userId)
+      .update({ isAvail: isavail });
+  }
   return (
     <View style={styles.container}>
       <ScrollView>
-        <View style={styles.container}>
-          {/* <ImageBackground
-        style={styles.bgImg}
-        source={require("../../assets/bgpic.jpg")}
-      > */}
-          <Text style={styles.title}>Register Donor</Text>
-          <View style={styles.div}>
-            <Text>{person.name}</Text>
-
-            <Text>{person.bloodGroup}</Text>
-
-            <Text>{person.email}</Text>
-
-            <Text>{person.phoneNo}</Text>
-
-            <Text>{person.age}</Text>
-
-            <Text>{person.address}</Text>
+        <Text style={styles.title}>Update Donor</Text>
+        <Card mode="elevated" style={styles.card}>
+          <Card.Title
+            title={"Blood Donor"}
+            subtitle="Card Subtitle"
+            left={LeftContent}
+          />
+          <Card.Content>
+            <Title>Name: {person.name}</Title>
+            <Paragraph>Age: {person.age}</Paragraph>
+            <Paragraph>Blood Group: {person.bloodGroup}</Paragraph>
+            <Paragraph>Contact No: {person.phoneNo}</Paragraph>
+            <Paragraph>Email Address: {person.email}</Paragraph>
+            <Paragraph>Address: {person.address}</Paragraph>
             <TextInput
               style={styles.input}
               placeholder="Are you avaliable for donation or not?"
               mode="outlined"
               outlineColor="#DE3D3D"
               activeOutlineColor="#f50a0c"
-              value={person.isAvail}
+              // value={person.isAvail}
               onChangeText={(text) => {
                 setIsAvail(text);
               }}
             />
-          </View>
-          <Button
-            mode="outlined"
-            color="#DE3D3D"
-            // onPress={() => {
-            //   registerDoner();
-            //   navigation.replace("Login");
-            // }}
-          >
-            Save
-          </Button>
-          {/* </ImageBackground> */}
-        </View>
+          </Card.Content>
+          <Card.Actions style={{ alignSelf: "center" }}>
+            <Button
+              style={{ width: 130 }}
+              mode="outlined"
+              color="#DE3D3D"
+              onPress={() => {
+                update();
+                navigation.replace("Doner List");
+              }}
+            >
+              Save
+            </Button>
+          </Card.Actions>
+        </Card>
       </ScrollView>
     </View>
   );
@@ -90,13 +110,25 @@ const styles = StyleSheet.create({
     backgroundColor: "#e3e3e2",
   },
   input: {
-    width: 350,
+    width: 330,
     height: 30,
     backgroundColor: "#F2F2F2",
-    margin: 10,
-    padding: 10,
+    // margin: 10,
+    padding: 5,
     fontSize: 17,
     fontWeight: "500",
+  },
+  card: {
+    margin: 5,
+    paddingLeft: 5,
+    paddingRight: 5,
+    paddingBottom: 15,
+  },
+  title: {
+    fontSize: 40,
+    fontWeight: "bold",
+    color: "#DE3D3D",
+    alignSelf: "center",
   },
 });
 

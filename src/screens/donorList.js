@@ -1,4 +1,4 @@
-import { View, StyleSheet, FlatList, Switch, Text } from "react-native";
+import { View, StyleSheet, FlatList, Switch } from "react-native";
 import * as React from "react";
 import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 import { useState, useEffect } from "react";
