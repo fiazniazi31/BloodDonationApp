@@ -8,6 +8,11 @@ function Login({ navigation }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  if (firebase.auth().currentUser !== null) {
+    navigation.replace("Home");
+  } else {
+    //user is logout
+  }
   function loginUser() {
     firebase
       .auth()

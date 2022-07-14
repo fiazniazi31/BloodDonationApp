@@ -1,11 +1,20 @@
 import * as React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Alert } from "react-native";
 import { Button, Paragraph } from "react-native-paper";
 import { firebase } from "../services/db/firebase_config";
 
 function Home({ navigation }) {
   // const id = firebase.auth().currentUser.uid;
   // console.log(id);
+
+  function logOutUser() {
+    firebase
+      .auth()
+      .signOut()
+      .catch((error) => {
+        Alert.alert(error);
+      });
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Donate Blood</Text>
@@ -25,20 +34,7 @@ function Home({ navigation }) {
       >
         Edit Your Data
       </Button>
-      {/* <Button
-        mode="contained"
-        style={{
-          margin: 20,
-          width: "50%",
-          padding: 5,
-          backgroundColor: "#DE3D3D",
-        }}
-        onPress={() => {
-          navigation.navigate("Register Donor");
-        }}
-      >
-        Register as Donor
-      </Button> */}
+
       <Button
         mode="contained"
         style={{
@@ -52,6 +48,21 @@ function Home({ navigation }) {
         }}
       >
         Find Donor
+      </Button>
+      <Button
+        mode="contained"
+        style={{
+          margin: 20,
+          width: "50%",
+          padding: 5,
+          backgroundColor: "#DE3D3D",
+        }}
+        onPress={() => {
+          logOutUser();
+          navigation.replace("Login");
+        }}
+      >
+        Log Out
       </Button>
     </View>
   );

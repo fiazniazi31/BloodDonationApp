@@ -1,6 +1,13 @@
 import { View, StyleSheet, FlatList, Switch } from "react-native";
 import * as React from "react";
-import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
+import {
+  Avatar,
+  Button,
+  Card,
+  Title,
+  Text,
+  Paragraph,
+} from "react-native-paper";
 import { useState, useEffect } from "react";
 import { firebase } from "../services/db/firebase_config";
 
@@ -38,7 +45,7 @@ const DonorList = ({ route }) => {
     });
   }, []);
   const id = firebase.auth().currentUser.uid;
-  console.log(id);
+  // console.log(id);
   return (
     <View>
       <View>
@@ -58,13 +65,19 @@ const DonorList = ({ route }) => {
                 <Paragraph>Contact No: {item.phoneNo}</Paragraph>
                 <Paragraph>Email Address: {item.email}</Paragraph>
                 <Paragraph>Address: {item.address}</Paragraph>
-                <Paragraph>Avaliable: {item.isAvail}</Paragraph>
+                <Text
+                  style={{
+                    fontWeight: "bold",
+                    color: "gray",
+                    alignSelf: "center",
+                  }}
+                >
+                  {item.isAvail
+                    ? "Donor is Avaliable"
+                    : "Donor is not Avaliable"}
+                </Text>
+                {/* <Paragraph>Avaliable: {item.isAvail}</Paragraph> */}
               </Card.Content>
-              <Card.Actions>
-                <Button mode="contained" style={{ backgroundColor: "#DE3D3D" }}>
-                  Edit
-                </Button>
-              </Card.Actions>
             </Card>
           )}
         />

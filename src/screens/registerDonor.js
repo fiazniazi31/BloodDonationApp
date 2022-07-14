@@ -5,7 +5,7 @@ import {
   Text,
   View,
   Alert,
-  // Switch,
+  Switch,
   ScrollView,
 } from "react-native";
 import { TextInput, Button } from "react-native-paper";
@@ -33,9 +33,9 @@ function RegisterDonor({ navigation }) {
   const [phoneNo, setPhoneNo] = useState("");
   const [age, setAge] = useState("");
   const [bloodGroup, setBloodGroup] = useState("");
-  const [isAvail, setIsAvail] = useState("");
+  const [isAvail, setIsAvail] = useState(false);
 
-  // const toggleSwitch = () => setIsAvail((previousState) => !previousState);
+  const toggleSwitch = () => setIsAvail((previousState) => !previousState);
 
   function registerDoner() {
     // call firebase and ask it to register on
@@ -63,7 +63,7 @@ function RegisterDonor({ navigation }) {
             .set(donorData);
           Alert.alert(
             "Succeed",
-            "Yout are successfully register as donor. Now login to make sure your availability"
+            "Yout are successfully register as donor and login."
           );
         }
       })
@@ -71,15 +71,11 @@ function RegisterDonor({ navigation }) {
         Alert.alert("❌", "Something Went Wrong, Please Retry");
       });
   }
+  // console.log(isAvail);
 
-  // const [value, setValue] = useState(null);
   return (
     <ScrollView>
       <View style={styles.container}>
-        {/* <ImageBackground
-        style={styles.bgImg}
-        source={require("../../assets/bgpic.jpg")}
-      > */}
         <Text style={styles.title}>Register Donor</Text>
         <View style={styles.div}>
           <TextInput
@@ -144,7 +140,7 @@ function RegisterDonor({ navigation }) {
             secureTextEntry={true}
             right={<TextInput.Icon name="eye" color="#DE3D3D" />}
           />
-          {/* <Text
+          <Text
             style={{ fontWeight: "bold", color: "gray", alignSelf: "center" }}
           >
             {isAvail ? "Donor is Avaliable" : "Donor is not Avaliable"}
@@ -156,8 +152,8 @@ function RegisterDonor({ navigation }) {
             ios_backgroundColor="#3e3e3e"
             onValueChange={toggleSwitch}
             value={isAvail}
-          /> */}
-          <TextInput
+          />
+          {/* <TextInput
             style={styles.input}
             placeholder="Are you avaliable for donation or not?"
             mode="outlined"
@@ -166,7 +162,7 @@ function RegisterDonor({ navigation }) {
             onChangeText={(text) => {
               setIsAvail(text);
             }}
-          />
+          /> */}
           <TextInput
             style={styles.input}
             placeholder="Enter Phone Number"
@@ -204,12 +200,11 @@ function RegisterDonor({ navigation }) {
           color="#DE3D3D"
           onPress={() => {
             registerDoner();
-            navigation.replace("Login");
+            navigation.replace("Home");
           }}
         >
           Save
         </Button>
-        {/* </ImageBackground> */}
       </View>
     </ScrollView>
   );

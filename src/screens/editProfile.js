@@ -5,7 +5,7 @@ import {
   Text,
   View,
   Alert,
-  // Switch,
+  Switch,
   ScrollView,
 } from "react-native";
 import {
@@ -27,8 +27,12 @@ const LeftContent = (props) => (
 );
 
 function EditProfile({ navigation }) {
-  const [isavail, setIsAvail] = useState("");
+  // const [isavail, setIsAvail] = useState("");
   const [person, setPerson] = useState("");
+  const [isavail, setIsAvail] = useState("");
+
+  const toggleSwitch = () => setIsAvail((previousState) => !previousState);
+
   useEffect(() => {
     const userId = firebase.auth().currentUser.uid;
     firebase
@@ -60,8 +64,8 @@ function EditProfile({ navigation }) {
         <Text style={styles.title}>Update Donor</Text>
         <Card mode="elevated" style={styles.card}>
           <Card.Title
-            title={"Blood Donor"}
-            subtitle="Card Subtitle"
+            title={"Update Donor"}
+            subtitle="Change Availability"
             left={LeftContent}
           />
           <Card.Content>
@@ -71,7 +75,24 @@ function EditProfile({ navigation }) {
             <Paragraph>Contact No: {person.phoneNo}</Paragraph>
             <Paragraph>Email Address: {person.email}</Paragraph>
             <Paragraph>Address: {person.address}</Paragraph>
-            <TextInput
+            <Text
+              style={{
+                fontWeight: "bold",
+                color: "gray",
+                alignSelf: "flex-start",
+              }}
+            >
+              {isavail ? "Donor is Avaliable" : "Donor is not Avaliable"}
+            </Text>
+            <Switch
+              style={{ alignSelf: "center" }}
+              trackColor={{ false: "#767577", true: "#f50a0c" }}
+              thumbColor={isavail ? "#DE3D3D" : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleSwitch}
+              value={isavail}
+            />
+            {/* <TextInput
               style={styles.input}
               placeholder="Are you avaliable for donation or not?"
               mode="outlined"
@@ -81,7 +102,7 @@ function EditProfile({ navigation }) {
               onChangeText={(text) => {
                 setIsAvail(text);
               }}
-            />
+            /> */}
           </Card.Content>
           <Card.Actions style={{ alignSelf: "center" }}>
             <Button
@@ -119,10 +140,11 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   card: {
+    width: 350,
     margin: 5,
     paddingLeft: 5,
     paddingRight: 5,
-    paddingBottom: 15,
+    paddingBottom: 30,
   },
   title: {
     fontSize: 40,
