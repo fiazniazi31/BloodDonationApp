@@ -7,6 +7,7 @@ import {
   Alert,
   Switch,
   ScrollView,
+  ImageBackground,
 } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { Dropdown } from "react-native-element-dropdown";
@@ -74,6 +75,11 @@ function RegisterDonor({ navigation }) {
   // console.log(isAvail);
 
   return (
+    // <ImageBackground
+    //   resizeMode="cover"
+    //   style={styles.bgimg}
+    //   source={require("../../assets/bg.png")}
+    // >
     <ScrollView>
       <View style={styles.container}>
         <Text style={styles.title}>Register Donor</Text>
@@ -196,17 +202,25 @@ function RegisterDonor({ navigation }) {
           />
         </View>
         <Button
-          mode="outlined"
+          mode="contained"
           color="#DE3D3D"
           onPress={() => {
             registerDoner();
             navigation.replace("Home");
+          }}
+          style={{
+            borderRadius: 500,
+            width: 150,
+            height: 50,
+            marginTop: 20,
+            justifyContent: "center",
           }}
         >
           Save
         </Button>
       </View>
     </ScrollView>
+    // </ImageBackground>
   );
 }
 
@@ -215,6 +229,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+  },
+  bgimg: {
+    flex: 1,
   },
   title: {
     fontSize: 40,

@@ -1,6 +1,6 @@
 import * as React from "react";
-import { StyleSheet, Text, View, Alert } from "react-native";
-import { Button, Paragraph } from "react-native-paper";
+import { StyleSheet, ImageBackground, Text, View, Alert } from "react-native";
+import { Button } from "react-native-paper";
 import { firebase } from "../services/db/firebase_config";
 
 function Home({ navigation }) {
@@ -16,6 +16,11 @@ function Home({ navigation }) {
       });
   }
   return (
+    // <ImageBackground
+    //   resizeMode="cover"
+    //   style={styles.bgimg}
+    //   source={require("../../assets/TopBg.png")}
+    // >
     <View style={styles.container}>
       <Text style={styles.title}>Donate Blood</Text>
       <Text style={styles.title}>Save World</Text>
@@ -32,7 +37,7 @@ function Home({ navigation }) {
           navigation.navigate("Edit Profile");
         }}
       >
-        Edit Your Data
+        Update Availability
       </Button>
 
       <Button
@@ -65,6 +70,7 @@ function Home({ navigation }) {
         Log Out
       </Button>
     </View>
+    // </ImageBackground>
   );
 }
 
@@ -80,16 +86,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#DE3D3D",
   },
-  paragraph: {
-    fontSize: 20,
-    color: "#DE3D3D",
-    textAlign: "justify",
-    justifyContent: "center",
-  },
   text: {
     fontSize: 22,
     fontWeight: "bold",
     color: "#DE3D3D",
+  },
+  bgimg: {
+    flex: 1,
   },
 });
 

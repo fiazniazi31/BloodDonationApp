@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View, Alert } from "react-native";
+import { StyleSheet, Text, ImageBackground, View, Alert } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { firebase } from "../services/db/firebase_config";
 
@@ -25,55 +25,62 @@ function Login({ navigation }) {
       });
   }
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <View style={styles.div}>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter username"
-          mode="outlined"
-          outlineColor="#DE3D3D"
-          activeOutlineColor="#f50a0c"
-          onChangeText={(text) => {
-            setUsername(text);
-          }}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Enter Password"
-          mode="outlined"
-          outlineColor="#DE3D3D"
-          activeOutlineColor="#f50a0c"
-          onChangeText={(text) => {
-            setPassword(text);
-          }}
-          secureTextEntry={true}
-        />
-      </View>
-      <Button
-        mode="outlined"
-        color="#DE3D3D"
-        onPress={() => {
-          loginUser();
-        }}
-      >
-        Login
-      </Button>
-      <View style={styles.fotter}>
-        <Text style={{ color: "black", fontSize: 16, paddingBottom: 50 }}>
-          Dont't have an account?
-          <Text
-            // mode="text"
-            style={{ color: "#DE3D3D", fontWeight: "bold", fontSize: 18 }}
-            onPress={() => {
-              navigation.navigate("Register Donor");
+    <ImageBackground
+      resizeMode="cover"
+      style={styles.bgimg}
+      source={require("../../assets/TopBg.png")}
+    >
+      <View style={styles.container}>
+        <Text style={styles.title}>Login</Text>
+        <View style={styles.div}>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter username"
+            mode="outlined"
+            outlineColor="#3bc4b5"
+            activeOutlineColor="#13a0da"
+            onChangeText={(text) => {
+              setUsername(text);
             }}
-          >
-            Register
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Enter Password"
+            mode="outlined"
+            outlineColor="#e1dedc"
+            activeOutlineColor="#13a0da"
+            onChangeText={(text) => {
+              setPassword(text);
+            }}
+            secureTextEntry={true}
+          />
+        </View>
+        <Button
+          mode="contained"
+          color="#f3f5f5"
+          style={{ borderRadius: 500, width: 150 }}
+          onPress={() => {
+            loginUser();
+          }}
+        >
+          Login
+        </Button>
+        <View style={styles.fotter}>
+          <Text style={{ color: "#e8ecec", fontSize: 16, paddingBottom: 50 }}>
+            Dont't have an account?
+            <Text
+              // mode="text"
+              style={{ color: "#e1dedc", fontWeight: "bold", fontSize: 18 }}
+              onPress={() => {
+                navigation.navigate("Register Donor");
+              }}
+            >
+              {"\t"}Register
+            </Text>
           </Text>
-        </Text>
+        </View>
       </View>
-    </View>
+    </ImageBackground>
   );
 }
 
@@ -82,14 +89,16 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    marginTop: 100,
   },
-  // bgImg: {
-  //   flex: 1,
-  // },
+  bgimg: {
+    flex: 1,
+  },
   title: {
     fontSize: 40,
-    fontWeight: "bold",
-    color: "#DE3D3D",
+    fontFamily: "serif",
+    fontWeight: "normal",
+    color: "#f3f5f5",
   },
   input: {
     width: 350,
