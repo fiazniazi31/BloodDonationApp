@@ -211,7 +211,7 @@ function RegisterDonor({ navigation }) {
           style={{
             borderRadius: 500,
             width: 150,
-            height: 50,
+            padding: 5,
             marginTop: 20,
             justifyContent: "center",
           }}
@@ -227,6 +227,7 @@ function RegisterDonor({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: 50,
     alignItems: "center",
     justifyContent: "center",
   },

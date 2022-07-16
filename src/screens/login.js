@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { StyleSheet, Text, ImageBackground, View, Alert } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { firebase } from "../services/db/firebase_config";
@@ -7,12 +7,14 @@ import { firebase } from "../services/db/firebase_config";
 function Login({ navigation }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  useEffect(() => {
+    if (firebase.auth().currentUser !== null) {
+      navigation.replace("Home");
+    } else {
+      //user is logout
+    }
+  }, []);
 
-  if (firebase.auth().currentUser !== null) {
-    navigation.replace("Home");
-  } else {
-    //user is logout
-  }
   function loginUser() {
     firebase
       .auth()
@@ -58,7 +60,7 @@ function Login({ navigation }) {
         <Button
           mode="contained"
           color="#f3f5f5"
-          style={{ borderRadius: 500, width: 150 }}
+          style={{ borderRadius: 50, padding: 5, width: "40%" }}
           onPress={() => {
             loginUser();
           }}

@@ -7,6 +7,7 @@ import {
   Alert,
   Switch,
   ScrollView,
+  ImageBackground,
 } from "react-native";
 import {
   TextInput,
@@ -59,40 +60,45 @@ function EditProfile({ navigation }) {
       .update({ isAvail: isavail });
   }
   return (
-    <View style={styles.container}>
-      <ScrollView>
-        <Text style={styles.title}>Update Donor</Text>
-        <Card mode="elevated" style={styles.card}>
-          <Card.Title
-            title={"Update Donor"}
-            subtitle="Change Availability"
-            left={LeftContent}
-          />
-          <Card.Content>
-            <Title>Name: {person.name}</Title>
-            <Paragraph>Age: {person.age}</Paragraph>
-            <Paragraph>Blood Group: {person.bloodGroup}</Paragraph>
-            <Paragraph>Contact No: {person.phoneNo}</Paragraph>
-            <Paragraph>Email Address: {person.email}</Paragraph>
-            <Paragraph>Address: {person.address}</Paragraph>
-            <Text
-              style={{
-                fontWeight: "bold",
-                color: "gray",
-                alignSelf: "flex-start",
-              }}
-            >
-              {isavail ? "Donor is Avaliable" : "Donor is not Avaliable"}
-            </Text>
-            <Switch
-              style={{ alignSelf: "center" }}
-              trackColor={{ false: "#767577", true: "#f50a0c" }}
-              thumbColor={isavail ? "#DE3D3D" : "#f4f3f4"}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch}
-              value={isavail}
+    <ImageBackground
+      resizeMode="cover"
+      style={styles.bgimg}
+      source={require("../../assets/bg.png")}
+    >
+      <View style={styles.container}>
+        <ScrollView>
+          <Text style={styles.title}>Update</Text>
+          <Card mode="elevated" style={styles.card}>
+            <Card.Title
+              title={"Update Donor"}
+              subtitle="Change Availability"
+              left={LeftContent}
             />
-            {/* <TextInput
+            <Card.Content>
+              <Title>Name: {person.name}</Title>
+              <Paragraph>Age: {person.age}</Paragraph>
+              <Paragraph>Blood Group: {person.bloodGroup}</Paragraph>
+              <Paragraph>Contact No: {person.phoneNo}</Paragraph>
+              <Paragraph>Email Address: {person.email}</Paragraph>
+              <Paragraph>Address: {person.address}</Paragraph>
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  color: "gray",
+                  alignSelf: "flex-start",
+                }}
+              >
+                {isavail ? "Donor is Avaliable" : "Donor is not Avaliable"}
+              </Text>
+              <Switch
+                style={{ alignSelf: "center" }}
+                trackColor={{ false: "#767577", true: "#f50a0c" }}
+                thumbColor={isavail ? "#DE3D3D" : "#f4f3f4"}
+                ios_backgroundColor="#3e3e3e"
+                onValueChange={toggleSwitch}
+                value={isavail}
+              />
+              {/* <TextInput
               style={styles.input}
               placeholder="Are you avaliable for donation or not?"
               mode="outlined"
@@ -103,23 +109,24 @@ function EditProfile({ navigation }) {
                 setIsAvail(text);
               }}
             /> */}
-          </Card.Content>
-          <Card.Actions style={{ alignSelf: "center" }}>
-            <Button
-              style={{ width: 130 }}
-              mode="outlined"
-              color="#DE3D3D"
-              onPress={() => {
-                update();
-                navigation.replace("Doner List");
-              }}
-            >
-              Save
-            </Button>
-          </Card.Actions>
-        </Card>
-      </ScrollView>
-    </View>
+            </Card.Content>
+            <Card.Actions style={{ alignSelf: "center" }}>
+              <Button
+                style={{ width: "40%", borderRadius: 50 }}
+                mode="contained"
+                color="#DE3D3D"
+                onPress={() => {
+                  update();
+                  navigation.replace("Doner List");
+                }}
+              >
+                Save
+              </Button>
+            </Card.Actions>
+          </Card>
+        </ScrollView>
+      </View>
+    </ImageBackground>
   );
 }
 
@@ -128,29 +135,34 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#e3e3e2",
+    marginTop: 40,
+
+    // backgroundColor: "#e3e3e2",
   },
-  input: {
-    width: 330,
-    height: 30,
-    backgroundColor: "#F2F2F2",
-    // margin: 10,
-    padding: 5,
-    fontSize: 17,
-    fontWeight: "500",
-  },
+  // input: {
+  //   width: 330,
+  //   height: 30,
+  //   backgroundColor: "#F2F2F2",
+  //   padding: 5,
+  //   fontSize: 17,
+  //   fontWeight: "500",
+  // },
   card: {
     width: 350,
     margin: 5,
     paddingLeft: 5,
     paddingRight: 5,
     paddingBottom: 30,
+    borderRadius: 30,
   },
   title: {
     fontSize: 40,
     fontWeight: "bold",
-    color: "#DE3D3D",
+    color: "#f3f5f5",
     alignSelf: "center",
+  },
+  bgimg: {
+    flex: 1,
   },
 });
 

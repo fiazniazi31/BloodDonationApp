@@ -16,61 +16,65 @@ function Home({ navigation }) {
       });
   }
   return (
-    // <ImageBackground
-    //   resizeMode="cover"
-    //   style={styles.bgimg}
-    //   source={require("../../assets/TopBg.png")}
-    // >
-    <View style={styles.container}>
-      <Text style={styles.title}>Donate Blood</Text>
-      <Text style={styles.title}>Save World</Text>
+    <ImageBackground
+      resizeMode="cover"
+      style={styles.bgimg}
+      source={require("../../assets/TopBg.png")}
+    >
+      <View style={styles.container}>
+        <Text style={styles.title}>Donate Blood</Text>
+        <Text style={styles.title}>Save World</Text>
 
-      <Button
-        mode="contained"
-        style={{
-          margin: 20,
-          width: "50%",
-          padding: 5,
-          backgroundColor: "#DE3D3D",
-        }}
-        onPress={() => {
-          navigation.navigate("Edit Profile");
-        }}
-      >
-        Update Availability
-      </Button>
+        <Button
+          color="#f3f5f5"
+          mode="contained"
+          style={{
+            margin: 20,
+            width: "50%",
+            borderRadius: 50,
+            padding: 5,
+          }}
+          onPress={() => {
+            navigation.navigate("Edit Profile");
+          }}
+        >
+          Update Availability
+        </Button>
 
-      <Button
-        mode="contained"
-        style={{
-          margin: 20,
-          width: "50%",
-          padding: 5,
-          backgroundColor: "#DE3D3D",
-        }}
-        onPress={() => {
-          navigation.navigate("Doner List");
-        }}
-      >
-        Find Donor
-      </Button>
-      <Button
-        mode="contained"
-        style={{
-          margin: 20,
-          width: "50%",
-          padding: 5,
-          backgroundColor: "#DE3D3D",
-        }}
-        onPress={() => {
-          logOutUser();
-          navigation.replace("Login");
-        }}
-      >
-        Log Out
-      </Button>
-    </View>
-    // </ImageBackground>
+        <Button
+          mode="contained"
+          color="#f3f5f5"
+          style={{
+            margin: 20,
+            width: "50%",
+            borderRadius: 50,
+            padding: 5,
+          }}
+          onPress={() => {
+            navigation.navigate("Doner List");
+          }}
+        >
+          Find Donor
+        </Button>
+        <Button
+          mode="contained"
+          color="#f3f5f5"
+          style={{
+            margin: 20,
+            width: "50%",
+            padding: 5,
+            borderRadius: 50,
+          }}
+          onPress={() => {
+            logOutUser();
+            navigation.replace("Login");
+          }}
+        >
+          Log Out
+        </Button>
+      </View>
+      {/* {" "} */}
+    </ImageBackground>
   );
 }
 
@@ -79,17 +83,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#e3e3e2",
+    marginTop: 50,
   },
   title: {
-    fontSize: 30,
-    fontWeight: "bold",
-    color: "#DE3D3D",
-  },
-  text: {
-    fontSize: 22,
-    fontWeight: "bold",
-    color: "#DE3D3D",
+    fontSize: 38,
+    fontFamily: "serif",
+    fontWeight: "normal",
+    color: "#f3f5f5",
   },
   bgimg: {
     flex: 1,

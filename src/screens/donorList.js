@@ -1,4 +1,4 @@
-import { View, StyleSheet, FlatList, Switch } from "react-native";
+import { View, StyleSheet, FlatList, ImageBackground } from "react-native";
 import * as React from "react";
 import {
   Avatar,
@@ -47,8 +47,12 @@ const DonorList = ({ route }) => {
   const id = firebase.auth().currentUser.uid;
   // console.log(id);
   return (
-    <View>
-      <View>
+    <ImageBackground
+      resizeMode="cover"
+      style={styles.bgimg}
+      source={require("../../assets/bg.png")}
+    >
+      <View style={styles.container}>
         <FlatList
           data={person}
           renderItem={({ item }) => (
@@ -82,7 +86,7 @@ const DonorList = ({ route }) => {
           )}
         />
       </View>
-    </View>
+    </ImageBackground>
   );
 };
 export { DonorList };
@@ -90,12 +94,17 @@ export { DonorList };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    marginTop: 30,
+    // alignItems: "center",
     justifyContent: "center",
   },
   card: {
     margin: 10,
     paddingLeft: 10,
     paddingBottom: 15,
+    borderRadius: 30,
+  },
+  bgimg: {
+    flex: 1,
   },
 });
